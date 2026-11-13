@@ -7,9 +7,9 @@
  *  - o bloco de QR Code não aparece.
  * Nenhum endereço foi inventado: preencha com os valores reais antes do evento.
  *
- * Também atualize, no <head> do index.html, as tags marcadas com "CONFIGURAR"
- * (og:url, og:image e twitter:image precisam de endereço absoluto para a prévia
- * funcionar no WhatsApp e no Instagram, já que esses serviços não executam JavaScript).
+ * Endereço público desta landing (GitHub Pages): https://alvaro3105.github.io/ExplainerCMI/
+ * Se ele mudar, atualize também og:url, og:image, twitter:image e canonical no index.html
+ * e gere um novo QR Code com tools/gerar_qrcode.py.
  */
 window.EXPLAINER_CONFIG = {
   // Endereço da plataforma (área do estudante). Ex.: "https://SEU-ENDERECO" ou "/" se a
@@ -24,8 +24,8 @@ window.EXPLAINER_CONFIG = {
 
   // Imagem do QR Code que aponta para a landing (gere com tools/gerar_qrcode.py).
   // Ex.: "assets/qrcode-landing.png". Vazio = bloco de QR oculto.
-  qrCodeImagem: "",
+  qrCodeImagem: "assets/qrcode-landing-web.png",
 
   // Endereço público desta landing, mostrado embaixo do QR Code. Ex.: "explainer.exemplo.com"
-  landingUrlVisivel: ""
+  landingUrlVisivel: "alvaro3105.github.io/ExplainerCMI"
 };

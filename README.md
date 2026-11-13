@@ -2,6 +2,8 @@
 
 Página institucional do **ExplAIner** para o **Circuito Mineiro de Inovação (CMI)**: apresentação no computador do estande, link da bio do Instagram e destino do QR Code.
 
+**Site no ar:** https://alvaro3105.github.io/ExplainerCMI/
+
 A plataforma em si está em [Alvaro3105/Explainer](https://github.com/Alvaro3105/Explainer). Esta landing **não altera** a plataforma: é um site estático (HTML, CSS e JavaScript, sem dependências e sem build) que reaproveita a identidade visual da área do estudante.
 
 ## Antes do evento: o que precisa ser preenchido
@@ -10,8 +12,8 @@ A plataforma em si está em [Alvaro3105/Explainer](https://github.com/Alvaro3105
 |---|---|---|
 | Endereço da plataforma | `js/config.js` → `plataformaUrl` | **Pendente.** Sem ele, os botões aparecem desativados com o selo "em breve". |
 | Instagram oficial | `js/config.js` → `instagramUrl` e `instagramUsuario` | **Pendente.** Sem ele, os links do Instagram ficam ocultos. |
-| QR Code | `js/config.js` → `qrCodeImagem` e `landingUrlVisivel` | **Pendente.** Gere depois de publicar a landing (veja abaixo). |
-| Prévia no WhatsApp/Instagram | `index.html` → tags marcadas com `CONFIGURAR` | **Pendente.** `og:image` e `twitter:image` precisam do endereço absoluto; descomente `og:url`. |
+| QR Code | `assets/qrcode-landing.png` (impressão) e `assets/qrcode-landing-web.png` (página) | **Pronto.** Aponta para https://alvaro3105.github.io/ExplainerCMI/ |
+| Prévia no WhatsApp/Instagram | `index.html` → `og:url`, `og:image`, `twitter:image` | **Pronto.** Usa o endereço do GitHub Pages. |
 
 Nenhum desses endereços foi inventado. Tudo fica em um só arquivo (`js/config.js`), exceto as tags de compartilhamento, que precisam estar no HTML porque os aplicativos de mensagem não executam JavaScript.
 
@@ -52,9 +54,9 @@ def landing_cmi():
     return send_from_directory(os.path.join(frontend_path, "cmi"), "index.html")
 ```
 
-### Opção B — GitHub Pages deste repositório
+### Opção B — GitHub Pages deste repositório (em uso)
 
-Em *Settings → Pages*, escolha a branch e a pasta raiz (`/`). O endereço será `https://<usuario>.github.io/ExplainerCMI/`.
+O site é publicado a partir da branch `gh-pages`, na pasta raiz (`/`), em https://alvaro3105.github.io/ExplainerCMI/. Para atualizar o site, envie as mudanças para a `main` e também para a `gh-pages`, ou mude em *Settings → Pages* a fonte para a `main`.
 
 ## QR Code
 
