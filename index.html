@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExplAIner — Conhecimento que vira conquista</title>
+  <meta name="description" content="Plataforma de estudos gamificada para o Ensino Médio: questões criadas por IA sobre o tema que você escolhe, correção na hora, pontos, ranking e sequência de dias.">
+  <meta name="theme-color" content="#131F24">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Compartilhamento (Open Graph / Instagram / WhatsApp).
+       CONFIGURAR: quando o endereço definitivo existir, troque "assets/marca/og-explainer.png"
+       pelo endereço absoluto (https://SEU-ENDERECO/assets/marca/og-explainer.png) e preencha og:url.
+       Os aplicativos de mensagem só leem esta parte do HTML, sem executar JavaScript. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="ExplAIner">
+  <meta property="og:title" content="ExplAIner — Conhecimento que vira conquista">
+  <meta property="og:description" content="Estude em fases: questões criadas por IA sobre o tema que você escolhe, correção na hora, pontos, ranking e sequência de dias.">
+  <meta property="og:image" content="assets/marca/og-explainer.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logotipo do ExplAIner com o astronauta da plataforma e o lema Conhecimento que vira conquista.">
+  <!-- CONFIGURAR: <meta property="og:url" content="https://SEU-ENDERECO/"> -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ExplAIner — Conhecimento que vira conquista">
+  <meta name="twitter:description" content="Plataforma de estudos gamificada com questões criadas por IA, correção na hora, ranking e sequência de dias.">
+  <meta name="twitter:image" content="assets/marca/og-explainer.png">
+
+  <link rel="icon" type="image/png" href="assets/marca/favicon.png">
+  <link rel="apple-touch-icon" href="assets/marca/favicon.png">
+  <link rel="preload" href="assets/fontes/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fontes/montserrat-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/landing.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/landing.js" defer></script>
+</head>
+<body>
+  <!-- Ícones (traço único, 24px). Um só conjunto para toda a página. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-externo" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5a3 3 0 0 0-.9-2.4c3-.3 6-1.4 6-6.6a5.1 5.1 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.1-.3-3.7 1.4a12.6 12.6 0 0 0-6.6 0C5.7 1.1 4.6 1.4 4.6 1.4a4.8 4.8 0 0 0-.1 3.6A5.1 5.1 0 0 0 3 8.6c0 5.2 3 6.3 6 6.6a3 3 0 0 0-.9 2.4V21"/></symbol>
+      <symbol id="i-livro" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></symbol>
+      <symbol id="i-ia" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16.5 9"/></symbol>
+      <symbol id="i-raio" viewBox="0 0 24 24"><path d="M13 2L4.5 13.5H12L11 22l8.5-11.5H12z"/></symbol>
+      <symbol id="i-degraus" viewBox="0 0 24 24"><path d="M3 20h5v-5h5v-5h5V5h3M3 20h18"/></symbol>
+      <symbol id="i-trofeu" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4.5a3.5 3.5 0 0 0 3.6 4.5M16 6h3.5a3.5 3.5 0 0 1-3.6 4.5M12 13v4M8 21h8M9.5 17h5"/></symbol>
+      <symbol id="i-chama" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-4.5-3.5-6.5-4-11-2.7 1.8-4.2 4.5-4.4 7.2C9.7 10 9 8.8 8.9 7.6 6.6 9.5 5 12 5 15a7 7 0 0 0 7 7z"/><path d="M12 22a3 3 0 0 0 3-3c0-2-1.5-3-2-4.5-1 .8-1.6 1.6-1.9 2.5-.5-.4-.8-1-.9-1.5-.8.9-1.2 2-1.2 3.5a3 3 0 0 0 3 3z"/></symbol>
+      <symbol id="i-historico" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8M3 3v5h5M12 7v5l3.5 2"/></symbol>
+      <symbol id="i-grafico" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16M8 16v-4M12.5 16V8M17 16v-6"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></symbol>
+      <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-tela" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+      <symbol id="i-servidor" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="7" rx="2"/><rect x="3.5" y="13" width="17" height="7" rx="2"/><path d="M7.5 7.5h.01M7.5 16.5h.01"/></symbol>
+      <symbol id="i-banco" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></symbol>
+      <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+      <symbol id="i-nuvem" viewBox="0 0 24 24"><path d="M7 18.5a4.5 4.5 0 0 1-.6-9A6 6 0 0 1 18 8.6a4.5 4.5 0 0 1-.5 9.9z"/></symbol>
+      <symbol id="i-teste" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6.2L4.8 18.4A1.7 1.7 0 0 0 6.3 21h11.4a1.7 1.7 0 0 0 1.5-2.6L14 9.2V3M7.5 15h9"/></symbol>
+      <symbol id="i-retomar" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+      <symbol id="i-lixeira" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12.5A1.5 1.5 0 0 0 8.5 21h7a1.5 1.5 0 0 0 1.5-1.5L18 7M9 7V4.5A1.5 1.5 0 0 1 10.5 3h3A1.5 1.5 0 0 1 15 4.5V7"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2.5h6L16.5 7h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo" id="topo">
+    <div class="topo-interno">
+      <a class="marca" href="#inicio" aria-label="ExplAIner, voltar ao início">
+        <span class="marca-circulo"><img src="assets/marca/logo-foguete.png" alt="" width="240" height="135"></span>
+        <span class="marca-nome">Expl<b>AI</b>ner</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Seções da página">
+        <ul>
+          <li><a href="#problema">Problema</a></li>
+          <li><a href="#solucao">Solução</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#tecnologia">Tecnologia</a></li>
+          <li><a href="#demonstracao">Demonstração</a></li>
+        </ul>
+        <a class="botao botao-principal botao-nav-celular" data-link="plataforma" data-ocultar-pendente href="#experimentar">Acessar a plataforma <svg class="ic" aria-hidden="true"><use href="#i-seta"/></svg></a>
+      </nav>
+      <a class="botao botao-principal botao-compacto botao-topo" data-link="plataforma" data-ocultar-pendente href="#experimentar">Acessar plataforma</a>
+      <button class="botao-menu" id="botao-menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu">
+        <svg class="ic ic-abrir" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="ic ic-fechar" aria-hidden="true"><use href="#i-fechar"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- 4.1 HERO -->
+    <section class="hero" id="inicio" aria-labelledby="titulo-hero">
+      <div class="estrelas" aria-hidden="true"></div>
+      <div class="container hero-grade">
+        <div class="hero-texto">
+          <p class="sobretitulo"><span class="ponto"></span>Plataforma de estudos gamificada · Ensino Médio</p>
+          <h1 id="titulo-hero">Conhecimento que <span class="destaque">vira conquista.</span></h1>
+          <p class="hero-sub">Escolha a matéria e o tema. O ExplAIner cria fases curtas de questões com inteligência artificial, corrige cada resposta na hora e transforma o seu avanço em pontos, ranking e sequência de dias.</p>
+          <div class="acoes">
+            <a class="botao botao-principal" data-link="plataforma" href="#experimentar">Experimentar o ExplAIner <svg class="ic" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <a class="botao botao-secundario" href="#como-funciona">Ver como funciona</a>
+          </div>
+          <ul class="hero-fatos" aria-label="Em resumo">
+            <li><svg class="ic" aria-hidden="true"><use href="#i-ia"/></svg>Questões criadas por IA</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Correção com explicação</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-trofeu"/></svg>Ranking e foguinho</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual">
+          <img class="hero-astronauta" src="assets/marca/astronauta.png" alt="" width="510" height="605" aria-hidden="true">
+          <figure class="moldura moldura-hero">
+            <div class="moldura-barra" aria-hidden="true"><span class="moldura-ponto"></span>Área do estudante · Aprender</div>
+            <img src="assets/telas/inicio.webp" width="1600" height="1000" alt="Tela inicial da área do estudante do ExplAIner, com pontos, sequência, posição no ranking, o painel Monte sua jornada e o Mapa de conquistas.">
+          </figure>
+          <figure class="moldura moldura-flutuante">
+            <img src="assets/telas/acerto.webp" width="1200" height="925" alt="Questão respondida corretamente: a alternativa Sol aparece em verde e a explicação informa que o Sol é a única estrela do Sistema Solar.">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4.2 PROBLEMA -->
+    <section class="secao secao-funda" id="problema" aria-labelledby="titulo-problema">
+      <div class="container">
+        <header class="cabecalho-secao">
+          <p class="rotulo">Por que o ExplAIner existe</p>
+          <h2 id="titulo-problema">Estudar sozinho é difícil de manter.</h2>
+          <p class="lead">O projeto nasceu de obstáculos que todo estudante do Ensino Médio conhece, principalmente quando estuda por conta própria.</p>
+        </header>
+        <ol class="problemas">
+          <li class="problema revelar">
+            <span class="problema-num" aria-hidden="true">01</span>
+            <div>
+              <h3>Falta de constância</h3>
+              <p>Começar é fácil. O difícil é voltar no dia seguinte, e no outro, sem ninguém acompanhando o hábito.</p>
+            </div>
+          </li>
+          <li class="problema revelar">
+            <span class="problema-num" aria-hidden="true">02</span>
+            <div>
+              <h3>Pouca motivação</h3>
+              <p>Uma lista de exercícios não mostra se você está indo bem, nem dá vontade de fazer só mais uma.</p>
+            </div>
+          </li>
+          <li class="problema revelar">
+            <span class="problema-num" aria-hidden="true">03</span>
+            <div>
+              <h3>Estudo pouco interativo</h3>
+              <p>Material parado e respostas genéricas: quem erra nem sempre descobre por que errou.</p>
+            </div>
+          </li>
+          <li class="problema revelar">
+            <span class="problema-num" aria-hidden="true">04</span>
+            <div>
+              <h3>Evolução invisível</h3>
+              <p>Sem registro, fica difícil saber o que já foi estudado, onde você acerta mais e o que precisa rever.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4.3 SOLUÇÃO -->
+    <section class="secao" id="solucao" aria-labelledby="titulo-solucao">
+      <div class="container">
+        <header class="cabecalho-secao cabecalho-largo">
+          <p class="rotulo">A solução</p>
+          <h2 id="titulo-solucao">Conheça o ExplAIner.</h2>
+          <p class="lead">Uma plataforma web em que o estudo acontece em <strong>jornadas de fases</strong>. Cada fase é um conjunto de questões de múltipla escolha sobre o tema que você escolheu, com correção imediata e explicação. O que você acerta vira pontos; o que você mantém vira sequência.</p>
+        </header>
+
+        <ul class="pilares">
+          <li class="pilar pilar-lima revelar">
+            <span class="pilar-icone" aria-hidden="true"><svg class="ic"><use href="#i-livro"/></svg></span>
+            <h3>Educação</h3>
+            <p>Matérias do Ensino Médio organizadas por tema, com a explicação de cada resposta logo após a correção.</p>
+          </li>
+          <li class="pilar pilar-roxo revelar">
+            <span class="pilar-icone" aria-hidden="true"><svg class="ic"><use href="#i-trofeu"/></svg></span>
+            <h3>Gamificação</h3>
+            <p>Pontos, bônus, mapa de questões, fases que ficam mais difíceis, ranking e o foguinho de dias seguidos.</p>
+          </li>
+          <li class="pilar pilar-turquesa revelar">
+            <span class="pilar-icone" aria-hidden="true"><svg class="ic"><use href="#i-ia"/></svg></span>
+            <h3>Tecnologia</h3>
+            <p>Questões geradas por inteligência artificial a partir do tema e da dificuldade que o estudante escolhe.</p>
+          </li>
+        </ul>
+
+        <div class="solucao-grade">
+          <figure class="moldura moldura-solucao revelar">
+            <div class="moldura-barra" aria-hidden="true"><span class="moldura-ponto"></span>Monte sua jornada</div>
+            <img src="assets/telas/montagem.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Painel Monte sua jornada: seleção de matéria (Ciências) e tema (Sistema solar), questões por desafio (5, 10, 15 ou 20) e dificuldade inicial (Fácil, Médio ou Difícil).">
+          </figure>
+          <div class="respostas">
+            <h3 class="respostas-titulo">Para cada obstáculo, um mecanismo da plataforma</h3>
+            <dl class="respostas-lista">
+              <div class="resposta-linha">
+                <dt><span class="tag">Constância</span></dt>
+                <dd><svg class="ic ic-laranja" aria-hidden="true"><use href="#i-chama"/></svg><span><strong>Sequência de dias.</strong> O foguinho conta os dias seguidos de estudo e incentiva a volta diária.</span></dd>
+              </div>
+              <div class="resposta-linha">
+                <dt><span class="tag">Motivação</span></dt>
+                <dd><svg class="ic ic-roxo" aria-hidden="true"><use href="#i-raio"/></svg><span><strong>Pontos, bônus e ranking.</strong> Cada acerto soma; fases perfeitas e jornadas completas rendem bônus.</span></dd>
+              </div>
+              <div class="resposta-linha">
+                <dt><span class="tag">Interação</span></dt>
+                <dd><svg class="ic ic-lima" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Correção na hora.</strong> Verde no acerto, vermelho no erro, sempre com a explicação.</span></dd>
+              </div>
+              <div class="resposta-linha">
+                <dt><span class="tag">Evolução</span></dt>
+                <dd><svg class="ic ic-turquesa" aria-hidden="true"><use href="#i-grafico"/></svg><span><strong>Meu progresso.</strong> Fases concluídas, precisão e histórico de atividades com opção de refazer.</span></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="materias revelar">
+          <p class="materias-rotulo">Matérias do catálogo inicial</p>
+          <ul class="materias-lista">
+            <li>Matemática</li><li>Português</li><li>Ciências</li><li>História</li><li>Geografia</li><li>Programação</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4.4 COMO FUNCIONA -->
+    <section class="secao secao-funda secao-jornada" id="como-funciona" aria-labelledby="titulo-jornada">
+      <div class="container">
+        <header class="cabecalho-secao">
+          <p class="rotulo">Como funciona</p>
+          <h2 id="titulo-jornada">A jornada do estudante, fase por fase.</h2>
+          <p class="lead">Cinco passos, do tema escolhido até a posição no ranking. Toque em cada etapa da trilha para ver a tela real.</p>
+        </header>
+
+        <div class="trilha" role="tablist" aria-label="Etapas da jornada">
+          <svg class="trilha-caminho" aria-hidden="true"><path id="trilha-path" d=""/></svg>
+          <button class="etapa" type="button" role="tab" id="aba-etapa-1" aria-controls="painel-etapa" aria-selected="true" data-etapa="0"><span class="etapa-bolinha">1</span><span class="etapa-nome">Escolha o conteúdo</span></button>
+          <button class="etapa" type="button" role="tab" id="aba-etapa-2" aria-controls="painel-etapa" aria-selected="false" tabindex="-1" data-etapa="1"><span class="etapa-bolinha">2</span><span class="etapa-nome">Inicie um desafio</span></button>
+          <button class="etapa" type="button" role="tab" id="aba-etapa-3" aria-controls="painel-etapa" aria-selected="false" tabindex="-1" data-etapa="2"><span class="etapa-bolinha">3</span><span class="etapa-nome">Responda às questões</span></button>
+          <button class="etapa" type="button" role="tab" id="aba-etapa-4" aria-controls="painel-etapa" aria-selected="false" tabindex="-1" data-etapa="3"><span class="etapa-bolinha">4</span><span class="etapa-nome">Ganhe pontos e avance</span></button>
+          <button class="etapa" type="button" role="tab" id="aba-etapa-5" aria-controls="painel-etapa" aria-selected="false" tabindex="-1" data-etapa="4"><span class="etapa-bolinha">5</span><span class="etapa-nome">Acompanhe sua evolução</span></button>
+        </div>
+
+        <div class="etapa-painel" id="painel-etapa" role="tabpanel" aria-labelledby="aba-etapa-1" tabindex="0">
+          <div class="etapa-texto">
+            <p class="etapa-contador"><span id="etapa-numero">01</span> <span aria-hidden="true">/ 05</span></p>
+            <h3 id="etapa-titulo">Escolha o conteúdo</h3>
+            <p id="etapa-descricao">Selecione a matéria e o tema. Depois, defina quantas questões cada fase terá e a dificuldade inicial da jornada.</p>
+            <ul class="etapa-fatos" id="etapa-fatos"><li>5, 10, 15 ou 20 questões por fase</li><li>Fácil, Médio ou Difícil</li></ul>
+            <div class="etapa-navegacao">
+              <button class="botao-redondo" type="button" id="etapa-anterior" aria-label="Etapa anterior"><svg class="ic ic-girado" aria-hidden="true"><use href="#i-seta"/></svg></button>
+              <button class="botao-redondo" type="button" id="etapa-proxima" aria-label="Próxima etapa"><svg class="ic" aria-hidden="true"><use href="#i-seta"/></svg></button>
+            </div>
+          </div>
+          <figure class="moldura moldura-etapa">
+            <img id="etapa-imagem" src="assets/telas/montagem.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Painel Monte sua jornada, com matéria, tema, quantidade de questões e dificuldade.">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4.5 FUNCIONALIDADES -->
+    <section class="secao" id="recursos" aria-labelledby="titulo-recursos">
+      <div class="container">
+        <header class="cabecalho-secao">
+          <p class="rotulo">Funcionalidades</p>
+          <h2 id="titulo-recursos">O que a plataforma já faz.</h2>
+          <p class="lead">Tudo o que aparece aqui está implementado e funcionando no código do ExplAIner.</p>
+        </header>
+
+        <div class="bento">
+          <article class="bloco bloco-ia revelar">
+            <div class="bloco-cabeca">
+              <span class="bloco-icone icone-lima" aria-hidden="true"><svg class="ic"><use href="#i-ia"/></svg></span>
+              <h3>Questões criadas por IA</h3>
+            </div>
+            <p>A plataforma envia a matéria, o tema, a dificuldade e a quantidade para a API do Google Gemini e recebe questões de múltipla escolha com a alternativa correta e a explicação. A API da OpenAI também é aceita, e um banco próprio de questões cobre os temas do catálogo inicial quando a IA não está disponível.</p>
+            <div class="esquema-ia" aria-label="Exemplo do fluxo de geração de questões">
+              <ul class="esquema-entrada">
+                <li><span>Matéria</span>Ciências</li>
+                <li><span>Tema</span>Sistema solar</li>
+                <li><span>Dificuldade</span>Médio</li>
+                <li><span>Questões</span>5</li>
+              </ul>
+              <span class="esquema-seta" aria-hidden="true"><svg class="ic"><use href="#i-seta"/></svg></span>
+              <div class="esquema-saida">
+                <p class="esquema-enunciado">Qual é a estrela do Sistema Solar?</p>
+                <ul class="esquema-alternativas">
+                  <li><b>A</b>Sirius</li><li class="certa"><b>B</b>Sol</li><li><b>C</b>Estrela Polar</li><li><b>D</b>Lua</li>
+                </ul>
+                <p class="esquema-explicacao"><b>Explicação:</b> o Sol é a única estrela do Sistema Solar; os planetas giram ao seu redor.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="bloco bloco-correcao revelar">
+            <div class="bloco-cabeca">
+              <span class="bloco-icone icone-turquesa" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span>
+              <h3>Correção e feedback</h3>
+            </div>
+            <p>Cada resposta é verificada assim que enviada. A alternativa fica verde no acerto e vermelha no erro, e a explicação aparece em seguida.</p>
+            <ul class="mini-alternativas" aria-hidden="true">
+              <li class="ok"><b>B</b>Sol</li>
+              <li class="nao"><b>A</b>Sirius</li>
+            </ul>
+          </article>
+
+          <article class="bloco bloco-pontos revelar">
+            <div class="bloco-cabeca">
+              <span class="bloco-icone icone-roxo" aria-hidden="true"><svg class="ic"><use href="#i-raio"/></svg></span>
+              <h3>Pontuação por dificuldade</h3>
+            </div>
+            <table class="tabela-pontos">
+              <caption class="so-leitor">Pontos por acerto de acordo com a dificuldade</caption>
+              <thead><tr><th scope="col">Dificuldade</th><th scope="col">Por acerto</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Fácil</th><td>+10</td></tr>
+                <tr><th scope="row">Médio</th><td>+15</td></tr>
+                <tr><th scope="row">Difícil</th><td>+20</td></tr>
+              </tbody>
+            </table>
+            <p class="bloco-nota">Errar desconta 25% do valor da questão.</p>
+          </article>
+
+          <article class="bloco bloco-fases revelar">
+            <div class="bloco-cabeca">
+              <span class="bloco-icone icone-lima" aria-hidden="true"><svg class="ic"><use href="#i-degraus"/></svg></span>
+              <h3>Fases e progressão</h3>
+            </div>
+            <p>Concluir uma fase libera a próxima, um nível mais difícil. Com 70% de erros, a jornada recomeça.</p>
+            <ol class="escada" aria-label="Bônus de progressão">
+              <li><strong>+10</strong><span>fase concluída</span></li>
+              <li><strong>+25</strong><span>fase perfeita</span></li>
+              <li><strong>+50</strong><span>jornada completa</span></li>
+            </ol>
+          </article>
+
+          <article class="bloco bloco-ranking revelar">
+            <div class="bloco-cabeca">
+              <span class="bloco-icone icone-amarelo" aria-hidden="true"><svg class="ic"><use href="#i-trofeu"/></svg></span>
+              <h3>Ranking de estudantes</h3>
+            </div>
+            <p>Classificação por pontos acumulados. Quem está fora do topo também vê a própria posição.</p>
+            <div class="medalhas" aria-hidden="true"><span class="ouro">1</span><span class="prata">2</span><span class="bronze">3</span><span class="voce">sua posição</span></div>
+          </article>
+
+          <article class="bloco bloco-sequencia revelar">
+            <div class="bloco-cabeca">
+              <span class="bloco-icone icone-laranja" aria-hidden="true"><svg class="ic"><use href="#i-chama"/></svg></span>
+              <h3>Sequência de dias</h3>
+            </div>
+            <p>O foguinho registra os dias seguidos de estudo e o tempo ativo na plataforma.</p>
+            <div class="semana" aria-hidden="true">
+              <span class="ativo">S</span><span class="ativo">T</span><span class="ativo">Q</span><span class="ativo">Q</span><span>S</span><span>S</span><span>D</span>
+            </div>
+          </article>
+
+          <article class="bloco bloco-historico revelar">
+            <div class="bloco-cabeca">
+              <span class="bloco-icone icone-turquesa" aria-hidden="true"><svg class="ic"><use href="#i-historico"/></svg></span>
+              <h3>Histórico e desempenho</h3>
+            </div>
+            <p>Fases concluídas, precisão das respostas, questões respondidas e as 30 atividades mais recentes, com a opção de refazer em modo revisão, sem valer pontos.</p>
+          </article>
+
+          <article class="bloco bloco-continuar revelar">
+            <div class="bloco-cabeca">
+              <span class="bloco-icone icone-roxo" aria-hidden="true"><svg class="ic"><use href="#i-retomar"/></svg></span>
+              <h3>Continue de onde parou</h3>
+            </div>
+            <p>O progresso de cada desafio é salvo automaticamente. Ao voltar, o estudante retoma a fase com as respostas que já deu.</p>
+            <div class="retomar" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg><span>Continuar jornada</span><span>Fase 2/5</span></div>
+          </article>
+        </div>
+
+        <ul class="extras revelar" aria-label="Outros recursos">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-lixeira"/></svg>Exclusão da própria conta e dos dados</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-livro"/></svg>Matérias e temas organizados</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-escudo"/></svg>Termos com aceite registrado</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-tela"/></svg>Modo claro e modo escuro</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4.6 TECNOLOGIA -->
+    <section class="secao secao-funda" id="tecnologia" aria-labelledby="titulo-tecnologia">
+      <div class="container">
+        <header class="cabecalho-secao">
+          <p class="rotulo">Tecnologia</p>
+          <h2 id="titulo-tecnologia">O que existe por trás da tela.</h2>
+          <p class="lead">O ExplAIner é uma aplicação web completa: a interface e a API são separadas, e o servidor é organizado em camadas, cada uma com uma responsabilidade.</p>
+        </header>
+
+        <div class="arquitetura revelar" aria-label="Arquitetura do ExplAIner">
+          <div class="arq-coluna">
+            <p class="arq-rotulo"><svg class="ic" aria-hidden="true"><use href="#i-tela"/></svg>Navegador</p>
+            <div class="arq-caixa">
+              <strong>Interface</strong>
+              <span>HTML5, CSS3 e JavaScript, sem frameworks</span>
+            </div>
+          </div>
+          <div class="arq-ligacao" aria-hidden="true"><span>JSON</span></div>
+          <div class="arq-coluna arq-coluna-api">
+            <p class="arq-rotulo"><svg class="ic" aria-hidden="true"><use href="#i-servidor"/></svg>API em Python + Flask</p>
+            <ol class="arq-camadas">
+              <li><strong>Controllers</strong><span>recebem a requisição, conferem o login e devolvem o JSON</span></li>
+              <li><strong>Services</strong><span>executam as regras: pontos, fases, sequência</span></li>
+              <li><strong>Repositories</strong><span>leem e gravam no banco</span></li>
+              <li><strong>Models</strong><span>representam as tabelas</span></li>
+            </ol>
+          </div>
+          <div class="arq-ligacao" aria-hidden="true"><span>SQL</span></div>
+          <div class="arq-coluna arq-coluna-lado">
+            <p class="arq-rotulo"><svg class="ic" aria-hidden="true"><use href="#i-banco"/></svg>Dados</p>
+            <div class="arq-caixa">
+              <strong>SQLAlchemy (ORM)</strong>
+              <span>SQLite no computador, PostgreSQL na hospedagem e MySQL opcional</span>
+            </div>
+            <p class="arq-rotulo"><svg class="ic" aria-hidden="true"><use href="#i-ia"/></svg>Inteligência artificial</p>
+            <div class="arq-caixa arq-caixa-ia">
+              <strong>API do Google Gemini</strong>
+              <span>gera as questões; a API da OpenAI é alternativa</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="stack">
+          <li class="revelar"><strong>Python</strong><span>Linguagem do servidor e das regras do jogo.</span></li>
+          <li class="revelar"><strong>Flask</strong><span>Organiza as rotas da API que a interface consome.</span></li>
+          <li class="revelar"><strong>SQLAlchemy</strong><span>Transforma as tabelas do banco em objetos Python.</span></li>
+          <li class="revelar"><strong>SQLite · PostgreSQL</strong><span>Guardam contas, questões, respostas e pontos.</span></li>
+          <li class="revelar"><strong>HTML · CSS · JavaScript</strong><span>A interface que o estudante usa, feita à mão.</span></li>
+          <li class="revelar"><strong>Google Gemini</strong><span>Cria as questões a partir do tema escolhido.</span></li>
+          <li class="revelar"><strong>Render · Gunicorn</strong><span>Publicam a aplicação na internet.</span></li>
+          <li class="revelar"><strong>pytest</strong><span>Testes automatizados da API e do banco.</span></li>
+        </ul>
+
+        <div class="fluxo revelar">
+          <h3 class="fluxo-titulo">O caminho de uma resposta</h3>
+          <code class="fluxo-endpoint">POST /api/learning/challenges/&lt;id&gt;/answer</code>
+          <ol class="fluxo-lista">
+            <li><span class="fluxo-n">1</span><p>O estudante toca em uma alternativa, e a interface envia a resposta para a API.</p></li>
+            <li><span class="fluxo-n">2</span><p>O <strong>Controller</strong> confere o login e chama o <strong>RespostaService</strong>.</p></li>
+            <li><span class="fluxo-n">3</span><p>O Service valida a ordem da questão e calcula os pontos pela dificuldade.</p></li>
+            <li><span class="fluxo-n">4</span><p>O <strong>Repository</strong> grava a resposta e atualiza os pontos no banco.</p></li>
+            <li><span class="fluxo-n">5</span><p>O JSON volta, e a alternativa fica verde ou vermelha, com a explicação.</p></li>
+          </ol>
+          <p class="fluxo-nota"><svg class="ic" aria-hidden="true"><use href="#i-escudo"/></svg>Senhas guardadas com hash, sessão protegida por cookie e limite de tentativas de login.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4.7 DEMONSTRAÇÃO -->
+    <section class="secao" id="demonstracao" aria-labelledby="titulo-demo">
+      <div class="container">
+        <header class="cabecalho-secao cabecalho-linha">
+          <div>
+            <p class="rotulo">Demonstração</p>
+            <h2 id="titulo-demo">Veja o ExplAIner funcionando.</h2>
+          </div>
+          <p class="lead lead-curta">Capturas reais da plataforma, feitas em uma instância local com contas de demonstração.</p>
+        </header>
+
+        <div class="galeria">
+          <div class="galeria-abas" role="tablist" aria-label="Telas da plataforma">
+            <button type="button" role="tab" class="galeria-aba" id="aba-tela-0" aria-controls="palco" aria-selected="true" data-tela="0">Mapa do desafio</button>
+            <button type="button" role="tab" class="galeria-aba" id="aba-tela-1" aria-controls="palco" aria-selected="false" tabindex="-1" data-tela="1">Questão</button>
+            <button type="button" role="tab" class="galeria-aba" id="aba-tela-2" aria-controls="palco" aria-selected="false" tabindex="-1" data-tela="2">Correção do erro</button>
+            <button type="button" role="tab" class="galeria-aba" id="aba-tela-3" aria-controls="palco" aria-selected="false" tabindex="-1" data-tela="3">Fase concluída</button>
+            <button type="button" role="tab" class="galeria-aba" id="aba-tela-4" aria-controls="palco" aria-selected="false" tabindex="-1" data-tela="4">Ranking</button>
+            <button type="button" role="tab" class="galeria-aba" id="aba-tela-5" aria-controls="palco" aria-selected="false" tabindex="-1" data-tela="5">Tela inicial</button>
+            <button type="button" role="tab" class="galeria-aba" id="aba-tela-6" aria-controls="palco" aria-selected="false" tabindex="-1" data-tela="6">Acesso</button>
+          </div>
+          <div class="galeria-corpo">
+            <figure class="moldura palco" id="palco" role="tabpanel" aria-labelledby="aba-tela-0" tabindex="0">
+              <img id="palco-imagem" src="assets/telas/mapa.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Mapa do desafio com a trilha de questões.">
+            </figure>
+            <figure class="moldura-celular revelar">
+              <img src="assets/telas/celular.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Área do estudante aberta em um celular, com o painel Monte sua jornada adaptado à tela pequena.">
+              <figcaption>No celular</figcaption>
+            </figure>
+          </div>
+          <p class="palco-legenda" id="palco-legenda" aria-live="polite">Mapa do desafio: cada bolinha é uma questão. Acertos ficam marcados, erros aparecem em vermelho e a próxima questão é liberada em ordem.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4.8 PROPÓSITO -->
+    <section class="secao secao-funda" id="proposito" aria-labelledby="titulo-proposito">
+      <div class="container proposito-grade">
+        <div>
+          <p class="rotulo">Nosso propósito</p>
+          <h2 id="titulo-proposito" class="frase-proposito">Prática guiada, correção na hora e <span class="destaque">motivo para voltar todo dia.</span></h2>
+        </div>
+        <div class="proposito-texto">
+          <p>O ExplAIner é um projeto de estudantes para estudantes. A ideia é simples: estudar fica mais leve quando cada sessão é curta, cada erro vem com uma explicação e cada avanço fica visível.</p>
+          <p>A tecnologia está a serviço disso. A inteligência artificial cria a prática sobre o tema que o estudante quer revisar, e a gamificação ajuda a transformar essa prática em hábito.</p>
+          <div class="equipe">
+            <p class="equipe-titulo">Quem desenvolve</p>
+            <p class="equipe-origem">3º ano · Técnico em Informática · COTEMIG</p>
+            <ul class="equipe-lista">
+              <li>Álvaro Pires de Souza</li>
+              <li>Antônio Henrique de Paula Reis</li>
+              <li>Henrique Saddi Meinicke</li>
+              <li>Josué Fernando Silva Melo</li>
+              <li>Lucas Ribeiro Fontana</li>
+              <li>Weber Anjos de Souza Sodré</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4.9 CTA FINAL -->
+    <section class="cta" id="experimentar" aria-labelledby="titulo-cta">
+      <div class="estrelas" aria-hidden="true"></div>
+      <div class="container cta-grade">
+        <img class="cta-astronauta" src="assets/marca/astronauta.png" alt="" width="510" height="605" loading="lazy" aria-hidden="true">
+        <div class="cta-texto">
+          <p class="sobretitulo"><span class="ponto"></span>Experimente</p>
+          <h2 id="titulo-cta">Sua próxima fase começa com um tema.</h2>
+          <p>Crie sua conta, escolha uma matéria e responda à primeira fase em poucos minutos. Seus pontos e seu progresso ficam salvos.</p>
+          <div class="acoes">
+            <a class="botao botao-principal botao-grande" data-link="plataforma" href="#experimentar">Acessar a plataforma <svg class="ic" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <a class="botao botao-secundario" data-link="instagram" href="#experimentar" hidden><svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg><span data-instagram-rotulo>Instagram</span></a>
+          </div>
+        </div>
+        <div class="qr" id="qr" hidden>
+          <img id="qr-imagem" src="" alt="QR Code para abrir esta página no celular" width="180" height="180">
+          <div>
+            <p class="qr-titulo"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg>Está no estande?</p>
+            <p>Aponte a câmera do celular para levar o ExplAIner com você.</p>
+            <p class="qr-url" id="qr-url"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 4.10 RODAPÉ -->
+  <footer class="rodape">
+    <div class="container rodape-grade">
+      <div class="rodape-marca">
+        <a class="marca" href="#inicio" aria-label="ExplAIner, voltar ao início">
+          <span class="marca-circulo"><img src="assets/marca/logo-foguete.png" alt="" width="240" height="135" loading="lazy"></span>
+          <span class="marca-nome">Expl<b>AI</b>ner</span>
+        </a>
+        <p>Plataforma de estudos gamificada para o Ensino Médio, com questões criadas por inteligência artificial.</p>
+      </div>
+      <nav class="rodape-nav" aria-label="Rodapé">
+        <p class="rodape-titulo">Página</p>
+        <ul>
+          <li><a href="#problema">Problema</a></li>
+          <li><a href="#solucao">Solução</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#tecnologia">Tecnologia</a></li>
+          <li><a href="#demonstracao">Demonstração</a></li>
+        </ul>
+      </nav>
+      <div class="rodape-nav">
+        <p class="rodape-titulo">Acesse</p>
+        <ul>
+          <li><a data-link="plataforma" href="#experimentar">Plataforma</a></li>
+          <li data-se-instagram hidden><a data-link="instagram" href="#experimentar">Instagram</a></li>
+          <li><a href="https://github.com/Alvaro3105/Explainer" target="_blank" rel="noopener">Código no GitHub <svg class="ic ic-mini" aria-hidden="true"><use href="#i-externo"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="rodape-nav">
+        <p class="rodape-titulo">Equipe</p>
+        <ul class="rodape-equipe">
+          <li>Álvaro Pires de Souza</li>
+          <li>Antônio Henrique de Paula Reis</li>
+          <li>Henrique Saddi Meinicke</li>
+          <li>Josué Fernando Silva Melo</li>
+          <li>Lucas Ribeiro Fontana</li>
+          <li>Weber Anjos de Souza Sodré</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container rodape-base">
+      <p>Projeto do 3º ano do curso Técnico em Informática do COTEMIG · Circuito Mineiro de Inovação</p>
+      <p>© <span id="ano">2026</span> ExplAIner</p>
+    </div>
+  </footer>
+</body>
+</html>
