@@ -86,7 +86,7 @@ Para refazer as capturas depois de mudanças na plataforma, veja os comentários
 ## Decisões de design
 
 - **Identidade:** paleta, fonte (Montserrat), botão lima com "degrau" 3D, bolinhas de fase, astronauta em pixel art e céu com cruzes vêm da área do estudante (`frontend/estudar.css` e `frontend/assets/`).
-- **Narrativa:** o que é → problema → solução → jornada → funcionalidades → tecnologia → demonstração → propósito → convite.
+- **Narrativa:** o que é → problema → solução → jornada → funcionalidades → para quem é → demonstração → propósito → convite. A página fala com estudantes, visitantes curiosos e possíveis parceiros e investidores, sem detalhes técnicos.
 - **Fidelidade:** toda funcionalidade, regra de pontuação e tecnologia citada foi conferida no código e no README da plataforma. O texto do problema e o lema do propósito vêm da apresentação da equipe.
 - **Acessibilidade:** HTML semântico, link "pular para o conteúdo", abas com teclado (setas, Home, End), foco visível, textos alternativos, contraste AA e respeito a "reduzir movimento".
 - **Desempenho:** sem bibliotecas externas; imagens em WebP (cerca de 550 KB no total, carregadas sob demanda abaixo da primeira dobra) e fontes locais com `font-display: swap`.

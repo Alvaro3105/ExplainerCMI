@@ -82,7 +82,7 @@
           <li><a href="#solucao">Solução</a></li>
           <li><a href="#como-funciona">Como funciona</a></li>
           <li><a href="#recursos">Recursos</a></li>
-          <li><a href="#tecnologia">Tecnologia</a></li>
+          <li><a href="#para-quem">Para quem é</a></li>
           <li><a href="#demonstracao">Demonstração</a></li>
         </ul>
         <a class="botao botao-principal botao-nav-celular" data-link="plataforma" data-ocultar-pendente href="#experimentar">Acessar a plataforma <svg class="ic" aria-hidden="true"><use href="#i-seta"/></svg></a>
@@ -285,7 +285,7 @@
               <span class="bloco-icone icone-lima" aria-hidden="true"><svg class="ic"><use href="#i-ia"/></svg></span>
               <h3>Questões criadas por IA</h3>
             </div>
-            <p>A plataforma envia a matéria, o tema, a dificuldade e a quantidade para a API do Google Gemini e recebe questões de múltipla escolha com a alternativa correta e a explicação. A API da OpenAI também é aceita, e um banco próprio de questões cobre os temas do catálogo inicial quando a IA não está disponível.</p>
+            <p>Você escolhe a matéria, o tema, a dificuldade e quantas questões quer. A inteligência artificial cria as questões na hora, cada uma com a resposta certa e uma explicação para quem errar.</p>
             <div class="esquema-ia" aria-label="Exemplo do fluxo de geração de questões">
               <ul class="esquema-entrada">
                 <li><span>Matéria</span>Ciências</li>
@@ -393,71 +393,42 @@
       </div>
     </section>
 
-    <!-- 4.6 TECNOLOGIA -->
-    <section class="secao secao-funda" id="tecnologia" aria-labelledby="titulo-tecnologia">
+    <!-- 4.6 PARA QUEM É -->
+    <section class="secao secao-funda" id="para-quem" aria-labelledby="titulo-para-quem">
       <div class="container">
         <header class="cabecalho-secao">
-          <p class="rotulo">Tecnologia</p>
-          <h2 id="titulo-tecnologia">O que existe por trás da tela.</h2>
-          <p class="lead">O ExplAIner é uma aplicação web completa: a interface e a API são separadas, e o servidor é organizado em camadas, cada uma com uma responsabilidade.</p>
+          <p class="rotulo">Para quem é</p>
+          <h2 id="titulo-para-quem">Feito para quem estuda. Aberto a quem quer conhecer.</h2>
+          <p class="lead">O ExplAIner já está funcionando e foi construído do zero pela própria equipe. Hoje ele oferece:</p>
         </header>
 
-        <div class="arquitetura revelar" aria-label="Arquitetura do ExplAIner">
-          <div class="arq-coluna">
-            <p class="arq-rotulo"><svg class="ic" aria-hidden="true"><use href="#i-tela"/></svg>Navegador</p>
-            <div class="arq-caixa">
-              <strong>Interface</strong>
-              <span>HTML5, CSS3 e JavaScript, sem frameworks</span>
-            </div>
-          </div>
-          <div class="arq-ligacao" aria-hidden="true"><span>JSON</span></div>
-          <div class="arq-coluna arq-coluna-api">
-            <p class="arq-rotulo"><svg class="ic" aria-hidden="true"><use href="#i-servidor"/></svg>API em Python + Flask</p>
-            <ol class="arq-camadas">
-              <li><strong>Controllers</strong><span>recebem a requisição, conferem o login e devolvem o JSON</span></li>
-              <li><strong>Services</strong><span>executam as regras: pontos, fases, sequência</span></li>
-              <li><strong>Repositories</strong><span>leem e gravam no banco</span></li>
-              <li><strong>Models</strong><span>representam as tabelas</span></li>
-            </ol>
-          </div>
-          <div class="arq-ligacao" aria-hidden="true"><span>SQL</span></div>
-          <div class="arq-coluna arq-coluna-lado">
-            <p class="arq-rotulo"><svg class="ic" aria-hidden="true"><use href="#i-banco"/></svg>Dados</p>
-            <div class="arq-caixa">
-              <strong>SQLAlchemy (ORM)</strong>
-              <span>SQLite no computador, PostgreSQL na hospedagem e MySQL opcional</span>
-            </div>
-            <p class="arq-rotulo"><svg class="ic" aria-hidden="true"><use href="#i-ia"/></svg>Inteligência artificial</p>
-            <div class="arq-caixa arq-caixa-ia">
-              <strong>API do Google Gemini</strong>
-              <span>gera as questões; a API da OpenAI é alternativa</span>
-            </div>
-          </div>
-        </div>
-
-        <ul class="stack">
-          <li class="revelar"><strong>Python</strong><span>Linguagem do servidor e das regras do jogo.</span></li>
-          <li class="revelar"><strong>Flask</strong><span>Organiza as rotas da API que a interface consome.</span></li>
-          <li class="revelar"><strong>SQLAlchemy</strong><span>Transforma as tabelas do banco em objetos Python.</span></li>
-          <li class="revelar"><strong>SQLite · PostgreSQL</strong><span>Guardam contas, questões, respostas e pontos.</span></li>
-          <li class="revelar"><strong>HTML · CSS · JavaScript</strong><span>A interface que o estudante usa, feita à mão.</span></li>
-          <li class="revelar"><strong>Google Gemini</strong><span>Cria as questões a partir do tema escolhido.</span></li>
-          <li class="revelar"><strong>Render · Gunicorn</strong><span>Publicam a aplicação na internet.</span></li>
-          <li class="revelar"><strong>pytest</strong><span>Testes automatizados da API e do banco.</span></li>
+        <ul class="numeros revelar" aria-label="O que a plataforma oferece hoje">
+          <li><strong>6</strong><span>matérias no catálogo inicial</span></li>
+          <li><strong>18</strong><span>temas para estudar</span></li>
+          <li><strong>3</strong><span>níveis de dificuldade</span></li>
+          <li><strong>4</strong><span>tamanhos de fase, de 5 a 20 questões</span></li>
         </ul>
 
-        <div class="fluxo revelar">
-          <h3 class="fluxo-titulo">O caminho de uma resposta</h3>
-          <code class="fluxo-endpoint">POST /api/learning/challenges/&lt;id&gt;/answer</code>
-          <ol class="fluxo-lista">
-            <li><span class="fluxo-n">1</span><p>O estudante toca em uma alternativa, e a interface envia a resposta para a API.</p></li>
-            <li><span class="fluxo-n">2</span><p>O <strong>Controller</strong> confere o login e chama o <strong>RespostaService</strong>.</p></li>
-            <li><span class="fluxo-n">3</span><p>O Service valida a ordem da questão e calcula os pontos pela dificuldade.</p></li>
-            <li><span class="fluxo-n">4</span><p>O <strong>Repository</strong> grava a resposta e atualiza os pontos no banco.</p></li>
-            <li><span class="fluxo-n">5</span><p>O JSON volta, e a alternativa fica verde ou vermelha, com a explicação.</p></li>
-          </ol>
-          <p class="fluxo-nota"><svg class="ic" aria-hidden="true"><use href="#i-escudo"/></svg>Senhas guardadas com hash, sessão protegida por cookie e limite de tentativas de login.</p>
-        </div>
+        <ul class="pilares publicos">
+          <li class="pilar pilar-lima revelar">
+            <span class="pilar-icone" aria-hidden="true"><svg class="ic"><use href="#i-livro"/></svg></span>
+            <h3>Estudantes</h3>
+            <p>Para quem está no Ensino Médio e quer praticar de um jeito mais leve: escolha o tema, responda, entenda onde errou e veja sua evolução.</p>
+            <a class="link-publico" data-link="plataforma" href="#experimentar">Criar minha conta <svg class="ic" aria-hidden="true"><use href="#i-seta"/></svg></a>
+          </li>
+          <li class="pilar pilar-turquesa revelar">
+            <span class="pilar-icone" aria-hidden="true"><svg class="ic"><use href="#i-camera"/></svg></span>
+            <h3>Curiosos e visitantes</h3>
+            <p>No estande do CMI, faça uma fase de questões em poucos minutos e veja na prática como funcionam os pontos, o ranking e o foguinho.</p>
+            <a class="link-publico" href="#demonstracao">Ver as telas <svg class="ic" aria-hidden="true"><use href="#i-seta"/></svg></a>
+          </li>
+          <li class="pilar pilar-roxo revelar">
+            <span class="pilar-icone" aria-hidden="true"><svg class="ic"><use href="#i-trofeu"/></svg></span>
+            <h3>Parceiros e investidores</h3>
+            <p>Quer apoiar o projeto, levar a plataforma a mais estudantes ou conversar sobre os próximos passos? Fale com a equipe no estande ou pelo Instagram.</p>
+            <a class="link-publico" href="#experimentar">Falar com a equipe <svg class="ic" aria-hidden="true"><use href="#i-seta"/></svg></a>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -469,7 +440,7 @@
             <p class="rotulo">Demonstração</p>
             <h2 id="titulo-demo">Veja o ExplAIner funcionando.</h2>
           </div>
-          <p class="lead lead-curta">Capturas reais da plataforma, feitas em uma instância local com contas de demonstração.</p>
+          <p class="lead lead-curta">Telas reais da plataforma, usando contas de demonstração.</p>
         </header>
 
         <div class="galeria">
@@ -565,7 +536,7 @@
           <li><a href="#solucao">Solução</a></li>
           <li><a href="#como-funciona">Como funciona</a></li>
           <li><a href="#recursos">Recursos</a></li>
-          <li><a href="#tecnologia">Tecnologia</a></li>
+          <li><a href="#para-quem">Para quem é</a></li>
           <li><a href="#demonstracao">Demonstração</a></li>
         </ul>
       </nav>
@@ -574,7 +545,6 @@
         <ul>
           <li><a data-link="plataforma" href="#experimentar">Plataforma</a></li>
           <li data-se-instagram hidden><a data-link="instagram" href="#experimentar">Instagram</a></li>
-          <li><a href="https://github.com/Alvaro3105/Explainer" target="_blank" rel="noopener">Código no GitHub <svg class="ic ic-mini" aria-hidden="true"><use href="#i-externo"/></svg></a></li>
         </ul>
       </div>
       <div class="rodape-nav">
