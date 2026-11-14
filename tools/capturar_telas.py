@@ -1,4 +1,4 @@
-"""Refaz as capturas reais de assets/telas/ a partir da plataforma rodando localmente.
+"""Refaz as capturas reais usadas na landing a partir da plataforma rodando localmente.
 
 As telas vêm da própria plataforma (Alvaro3105/Explainer), num banco vazio e sem chave de IA:
 as questões saem do banco local de questões, e o gabarito é lido do banco SQLite da execução.
@@ -15,8 +15,11 @@ as questões saem do banco local de questões, e o gabarito é lido do banco SQL
        python tools/capturar_telas.py http://127.0.0.1:5000 /tmp/telas-landing.db
 
    O script cria as contas de demonstração estudante01..05 (que jogam uma fase pela API) e
-   visitante (que joga no navegador), e grava os WebP em assets/telas/.
+   visitante (que joga no navegador, em tamanho de celular), e grava:
+   - assets/celular/*.webp  telas do celular (780 x 1688), mostradas dentro da moldura de celular;
+   - assets/telas/painel.webp  painel no computador (1600 x 1000), mostrado na moldura de notebook.
    Usa o Edge ou o Chrome instalado; sem eles, o Chromium do Playwright (playwright install chromium).
+   Use sempre um banco de teste, nunca o de produção.
 """
 import io
 import sqlite3
@@ -27,7 +30,8 @@ from PIL import Image
 from playwright.sync_api import sync_playwright
 
 RAIZ = Path(__file__).resolve().parent.parent
-SAIDA = RAIZ / "assets" / "telas"
+CELULAR = RAIZ / "assets" / "celular"
+TELAS = RAIZ / "assets" / "telas"
 SENHA = "demonstracao123"
 # acertos de cada conta de demonstração numa fase de 5 questões (o ranking fica variado)
 DEMONSTRACAO = [5, 5, 4, 4, 3]
@@ -42,12 +46,12 @@ def main(base, banco):
         finally:
             con.close()
 
-    def salvar(png, nome, largura, qualidade=82):
+    def salvar(png, pasta, nome, largura, qualidade=84):
         img = Image.open(io.BytesIO(png)).convert("RGB")
         if img.width != largura:
             img = img.resize((largura, round(img.height * largura / img.width)), Image.LANCZOS)
-        img.save(SAIDA / f"{nome}.webp", "WEBP", quality=qualidade, method=6)
-        print(f"  {nome}.webp {img.size}")
+        img.save(pasta / f"{nome}.webp", "WEBP", quality=qualidade, method=6)
+        print(f"  {pasta.name}/{nome}.webp {img.size}")
 
     with sync_playwright() as p:
         nav = None
@@ -80,21 +84,26 @@ def main(base, banco):
             api.post(f"/api/learning/challenges/{id_desafio}/complete", data={})
             api.dispose()
 
-        ctx = nav.new_context(viewport={"width": 1280, "height": 800}, device_scale_factor=1.25, locale="pt-BR")
+        # --- visitante joga no celular ---
+        ctx = nav.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2, locale="pt-BR",
+                              is_mobile=True, has_touch=True)
         pg = ctx.new_page()
 
         def clicar(seletor):
             pg.wait_for_selector(seletor, state="attached", timeout=15000)
             pg.evaluate("s => document.querySelector(s).click()", seletor)
 
+        def rolar_quiz(seletor, bloco):
+            """Rola a janela da questão (e a página) até o elemento indicado."""
+            pg.evaluate("""([s, b]) => document.querySelector(s).scrollIntoView({block: b, behavior: 'instant'})""",
+                        [seletor, bloco])
+
         def tela(nome, espera=700):
             pg.wait_for_timeout(espera)
-            salvar(pg.screenshot(), nome, 1600)
+            salvar(pg.screenshot(timeout=90000), CELULAR, nome, 780)
 
-        # --- acesso e cadastro do visitante ---
         pg.goto(base + "/")
         pg.wait_for_selector("#tela-acesso:not([hidden])")
-        tela("acesso")
         clicar("#aba-acesso-cadastro")
         f = "#formulario-cadastro"
         pg.fill(f + " input[name=nome]", "Visitante do CMI")
@@ -105,7 +114,7 @@ def main(base, banco):
         clicar(f + " button[type=submit]")
         pg.wait_for_selector("#estrutura-app:not([hidden])")
 
-        # --- montagem da jornada ---
+        # montagem da jornada
         pg.click("#entrada-materia")
         pg.type("#entrada-materia", "fis", delay=20)
         pg.keyboard.press("Enter")
@@ -116,10 +125,12 @@ def main(base, banco):
                              ".some(o => o.innerText.includes('Sistema Solar'))")
         pg.keyboard.press("Enter")
         clicar("input[name=quantidade][value='5']")
-        pg.mouse.click(5, 5)
+        pg.evaluate("() => document.activeElement && document.activeElement.blur()")
+        pg.evaluate("() => { const e = document.querySelector('#entrada-materia');"
+                    " window.scrollTo(0, e.getBoundingClientRect().top + scrollY - 150); }")
         tela("montagem")
 
-        # --- fase: 4 acertos e 1 erro (a 4ª questão) ---
+        # fase: 4 acertos e 1 erro (a 4ª questão)
         clicar("#botao-criar-desafio")
         pg.wait_for_selector("#tela-mapa-desafio:not([hidden])", timeout=20000)
         pg.wait_for_function("() => document.querySelectorAll('.bolinha-mapa').length === 5")
@@ -130,23 +141,18 @@ def main(base, banco):
             certa = gabarito(pg.evaluate("() => document.querySelector('#titulo-questao-quiz').innerText"))
             letra = certa if i != 3 else next(l for l in "ABCD" if l != certa)
             clicar(f".opcao-resposta[data-resposta='{letra}']")
-            if i == 1:
-                tela("questao")
             clicar("#proxima-questao")
             pg.wait_for_selector("#retorno-resposta:not([hidden])")
             pg.wait_for_function("() => !document.querySelector('#proxima-questao').disabled")
-            if i == 0:
-                pg.wait_for_timeout(700)
-                salvar(pg.locator(".moldura-quiz").screenshot(), "acerto", 1200)
-            if i == 3:
-                tela("erro")
+            if i in (0, 3):
+                pg.wait_for_timeout(4200)   # espera o aviso flutuante sumir
+                rolar_quiz("#retorno-resposta", "end")
+                tela("acerto" if i == 0 else "erro")
             pg.wait_for_timeout(400)
             clicar("#proxima-questao")
             if i < 4:
                 pg.wait_for_function("i => /acertou|errou/.test(document.querySelectorAll('.bolinha-mapa')[i]"
                                      ".getAttribute('aria-label') || '')", arg=i)
-                if i == 3:
-                    tela("mapa")
 
         pg.wait_for_selector("#resultado-quiz:not([hidden])", timeout=15000)
         tela("resultado", espera=4500)   # espera a comemoração terminar
@@ -160,30 +166,32 @@ def main(base, banco):
 
         clicar(".item-nav[data-visao='ranking']")
         pg.wait_for_function("() => (document.querySelector('[data-ranking=pagina]')?.innerText || '').includes('visitante')")
+        pg.evaluate("() => window.scrollTo(0, 0)")
         tela("ranking")
         clicar(".item-nav[data-visao='progresso']")
         pg.wait_for_function("() => document.querySelector('#corpo-tabela-historico').innerText.includes('Sistema Solar')")
+        pg.evaluate("() => window.scrollTo(0, 0)")
         tela("progresso")
         ctx.close()
 
-        # --- celular ---
-        cel = nav.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2, locale="pt-BR",
-                              is_mobile=True, has_touch=True)
-        pg = cel.new_page()
+        # --- painel no computador (moldura de notebook) ---
+        pc = nav.new_context(viewport={"width": 1280, "height": 800}, device_scale_factor=1.25, locale="pt-BR")
+        pg = pc.new_page()
         pg.goto(base + "/")
         pg.wait_for_selector("#tela-acesso:not([hidden])")
         pg.fill("#formulario-login input[name=email]", "visitante@demo.local")
         pg.fill("#formulario-login input[name=senha]", SENHA)
         pg.evaluate("() => document.querySelector('#formulario-login button[type=submit]').click()")
         pg.wait_for_selector("#estrutura-app:not([hidden])")
-        pg.wait_for_timeout(900)
-        salvar(pg.screenshot(), "celular", 780)
-        cel.close()
+        pg.wait_for_timeout(1200)
+        salvar(pg.screenshot(), TELAS, "painel", 1600)
+        pc.close()
         nav.close()
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         sys.exit("Uso: python tools/capturar_telas.py http://127.0.0.1:5000 CAMINHO/DO/BANCO.db")
-    SAIDA.mkdir(parents=True, exist_ok=True)
+    CELULAR.mkdir(parents=True, exist_ok=True)
+    TELAS.mkdir(parents=True, exist_ok=True)
     main(sys.argv[1].rstrip("/"), sys.argv[2])
