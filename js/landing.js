@@ -13,27 +13,14 @@
   const instagram = limpo(cfg.instagramUrl);
   const usuarioInsta = limpo(cfg.instagramUsuario).replace(/^@/, '');
 
-  $$('[data-link="plataforma"]').forEach((a) => {
-    if (plataforma) {
+  // Os links da plataforma já vêm com o endereço oficial no HTML (funcionam sem JavaScript).
+  // Se js/config.js trouxer outro endereço, ele passa a valer em todos os botões e links.
+  if (plataforma) {
+    $$('[data-link="plataforma"]').forEach((a) => {
       a.href = plataforma;
       if (/^https?:\/\//i.test(plataforma)) { a.target = '_blank'; a.rel = 'noopener'; }
-      return;
-    }
-    // Sem endereço configurado: atalhos do menu somem; os demais botões ficam
-    // visivelmente desativados e explicam o motivo.
-    if (a.hasAttribute('data-ocultar-pendente')) { a.hidden = true; return; }
-    a.removeAttribute('href');
-    a.setAttribute('role', 'link');
-    a.setAttribute('aria-disabled', 'true');
-    a.classList.add('link-pendente');
-    a.title = 'O endereço da plataforma ainda não foi configurado.';
-    if (a.classList.contains('botao')) {
-      const selo = document.createElement('span');
-      selo.className = 'selo-pendente';
-      selo.textContent = 'em breve';
-      a.appendChild(selo);
-    }
-  });
+    });
+  }
 
   if (instagram) {
     $$('[data-link="instagram"]').forEach((a) => {
@@ -43,13 +30,6 @@
     });
     $$('[data-se-instagram]').forEach((el) => { el.hidden = false; });
     $$('[data-instagram-rotulo]').forEach((el) => { el.textContent = usuarioInsta ? `@${usuarioInsta}` : 'Instagram'; });
-  }
-
-  const qrImagem = limpo(cfg.qrCodeImagem);
-  if (qrImagem) {
-    $('#qr-imagem').src = qrImagem;
-    $('#qr-url').textContent = limpo(cfg.landingUrlVisivel);
-    $('#qr').hidden = false;
   }
 
   /* ---------- Cabeçalho e menu do celular ---------- */
@@ -162,14 +142,14 @@
       texto: 'Cada resposta é corrigida na hora. A alternativa fica verde no acerto e vermelha no erro, e a explicação aparece logo abaixo.',
       fatos: ['Correção imediata', 'Explicação em toda questão'],
       img: 'assets/telas/acerto.webp',
-      alt: 'Questão respondida corretamente, com a alternativa Sol em verde e a explicação.'
+      alt: 'Questão respondida corretamente, com a alternativa Netuno em verde e a explicação.'
     },
     {
       titulo: 'Ganhe pontos e avance',
       texto: 'Acertos valem 10, 15 ou 20 pontos conforme a dificuldade, e errar desconta 25% desse valor. Concluir a fase rende bônus e libera a próxima, um nível mais difícil.',
       fatos: ['+10 por fase concluída', '+25 por fase perfeita', '+50 por jornada completa'],
       img: 'assets/telas/resultado.webp',
-      alt: 'Tela de fase concluída: 4 de 5 acertos, 66 pontos ganhos e 80% de precisão.'
+      alt: 'Tela de fase concluída: 4 de 5 acertos, 80% de precisão e bônus de 10 XP.'
     },
     {
       titulo: 'Acompanhe sua evolução',
@@ -199,7 +179,7 @@
   /* ---------- Galeria de demonstração ---------- */
   const TELAS = [
     { img: 'assets/telas/mapa.webp', alt: 'Mapa do desafio com a trilha de questões.', legenda: 'Mapa do desafio: cada bolinha é uma questão. Acertos ficam marcados, erros aparecem em vermelho e a próxima questão é liberada em ordem.' },
-    { img: 'assets/telas/questao.webp', alt: 'Questão de múltipla escolha com a alternativa B selecionada.', legenda: 'Questão de múltipla escolha sobre o tema escolhido, com quatro alternativas.' },
+    { img: 'assets/telas/questao.webp', alt: 'Questão de múltipla escolha com a alternativa C selecionada.', legenda: 'Questão de múltipla escolha sobre o tema escolhido, com quatro alternativas.' },
     { img: 'assets/telas/erro.webp', alt: 'Resposta incorreta em vermelho, a correta em verde e a explicação.', legenda: 'Quando o estudante erra, a plataforma mostra a alternativa correta e explica o conteúdo.' },
     { img: 'assets/telas/resultado.webp', alt: 'Resultado da fase com acertos, pontos e precisão.', legenda: 'Fim da fase: acertos, pontos ganhos, precisão e o caminho para a próxima fase.' },
     { img: 'assets/telas/ranking.webp', alt: 'Ranking da comunidade com posição, sequência, tempo ativo e pontos.', legenda: 'Ranking da comunidade, ordenado pelos pontos acumulados, com a linha do próprio estudante destacada.' },

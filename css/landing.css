@@ -101,21 +101,15 @@ h3{font-size:clamp(18px,1.6vw,21px);letter-spacing:-.01em}
 .botao-secundario:hover{background:rgba(106,197,203,.14)}
 .botao-compacto{min-height:44px;padding:0 18px;font-size:14px;box-shadow:0 4px 0 var(--cor14);margin-bottom:4px}
 .botao-grande{min-height:60px;padding:0 30px;font-size:18px;border-radius:30px}
-/* Link ainda não configurado em js/config.js */
-.link-pendente{opacity:.55;cursor:not-allowed;pointer-events:auto}
-.link-pendente:hover,.link-pendente:active{transform:none;background:var(--cor2);box-shadow:0 5px 0 var(--cor14)}
-.link-pendente .ic{display:none}
-.selo-pendente{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:rgba(30,44,50,.16)}
-.rodape .link-pendente,.nav .link-pendente{background:none}
 
 /* ---------- Cabeçalho ---------- */
 .topo{position:fixed;inset:0 0 auto;z-index:50;height:var(--topo-altura);background:rgba(19,31,36,.82);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:2px solid transparent;transition:border-color .3s,background .3s}
 .topo.rolado{border-bottom-color:var(--cor2);background:rgba(19,31,36,.94)}
 .topo-interno{height:100%;max-width:calc(1320px + var(--gutter)*2);margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center;gap:24px}
 .marca{display:inline-flex;align-items:center;gap:10px;flex:none}
-/* .circulo-logo da plataforma */
-.marca-circulo{width:42px;height:42px;border-radius:50%;background:var(--cor2);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
-.marca-circulo img{width:200%;max-width:none;transform:rotate(-45deg);margin-top:4px}
+/* Logo circular da plataforma (frontend/assets/logo-explainer.png) */
+.marca-logo{width:44px;height:44px;border-radius:50%;flex:none;box-shadow:0 0 0 2px rgba(209,220,90,.35);transition:box-shadow .2s}
+.marca:hover .marca-logo{box-shadow:0 0 0 3px var(--cor2)}
 .marca-nome{font-size:22px;font-weight:700;letter-spacing:-.3px}
 .marca-nome b{color:var(--cor2);font-weight:800}
 .nav{margin-left:auto}
@@ -337,17 +331,42 @@ h3{font-size:clamp(18px,1.6vw,21px);letter-spacing:-.01em}
 /* ---------- CTA ---------- */
 .cta{position:relative;overflow:hidden;padding:clamp(80px,11vw,140px) 0;background:#272736}
 .cta::before{content:"";position:absolute;width:min(70vw,760px);aspect-ratio:1;border-radius:50%;right:-12%;top:50%;transform:translateY(-50%);background:radial-gradient(circle,rgba(209,220,90,.16),transparent 62%);pointer-events:none}
-.cta-grade{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;max-width:1080px;gap:clamp(24px,4vw,56px);align-items:center}
+.cta-grade{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,430px);max-width:1240px;gap:clamp(24px,4vw,56px);align-items:center}
 .cta-astronauta{width:clamp(120px,14vw,200px);image-rendering:pixelated;transform:rotate(-15deg);filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));animation:flutuar-cta 6s ease-in-out infinite}
 @keyframes flutuar-cta{0%,100%{transform:rotate(-15deg) translateY(0)}50%{transform:rotate(-12deg) translateY(-14px)}}
+@keyframes apontar-baixo{50%{translate:0 6px}}
 .cta-texto{display:flex;flex-direction:column;gap:20px;max-width:640px}
 .cta-texto h2{font-size:clamp(32px,4.6vw,58px)}
 .cta-texto>p:not(.sobretitulo){font-size:18px;color:#d7e0e4;max-width:48ch}
-.qr{display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px;border-radius:var(--raio-g);background:#fff;color:#1E2C32;width:240px;text-align:center}
-.qr img{width:180px;height:180px;image-rendering:pixelated}
-.qr p{font-size:13px;color:#43565a}
-.qr .qr-titulo{display:flex;align-items:center;justify-content:center;gap:6px;font-weight:800;font-size:15px;color:#1E2C32;margin-bottom:4px}
-.qr-url{font-weight:700;color:#1d7f86!important;word-break:break-all;margin-top:6px}
+/* Cartão do QR Code: chamada, seta apontando para o código e endereço como alternativa */
+.qr-cartao{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"chamada chamada" "seta codigo" "alt alt";gap:18px 10px;align-items:center;padding:clamp(22px,2.4vw,30px);border-radius:var(--raio-g);background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.015)) var(--cor1);border:1px solid rgba(209,220,90,.35);box-shadow:var(--sombra-moldura)}
+.qr-chamada{grid-area:chamada;display:flex;flex-direction:column;gap:6px}
+.qr-titulo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:clamp(18px,1.7vw,21px);letter-spacing:-.01em}
+.qr-titulo .ic{color:var(--cor2);width:22px;height:22px}
+.qr-texto{font-size:15px;color:var(--apagado);max-width:34ch}
+.qr-texto strong{color:var(--texto)}
+.qr-seta{grid-area:seta;width:100%;max-width:150px;justify-self:end;overflow:visible;animation:apontar 1.8s ease-in-out infinite}
+.qr-seta path{fill:none;stroke:var(--cor2);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.qr-seta-linha{stroke-dasharray:1 11}
+@keyframes apontar{50%{translate:7px 2px}}
+.qr-codigo{grid-area:codigo;position:relative;display:block;width:clamp(194px,16vw,224px);padding:12px;margin:12px;background:#fff;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.35);transition:transform .2s ease,box-shadow .2s ease}
+.qr-codigo img{width:100%;height:auto}
+/* Cantos de "visor" em volta do código, fora da área branca (não encostam nos módulos) */
+.qr-codigo::after{content:"";position:absolute;inset:-12px;pointer-events:none;--c:var(--cor2);
+  background:
+    linear-gradient(var(--c),var(--c)) top left/28px 4px no-repeat,linear-gradient(var(--c),var(--c)) top left/4px 28px no-repeat,
+    linear-gradient(var(--c),var(--c)) top right/28px 4px no-repeat,linear-gradient(var(--c),var(--c)) top right/4px 28px no-repeat,
+    linear-gradient(var(--c),var(--c)) bottom left/28px 4px no-repeat,linear-gradient(var(--c),var(--c)) bottom left/4px 28px no-repeat,
+    linear-gradient(var(--c),var(--c)) bottom right/28px 4px no-repeat,linear-gradient(var(--c),var(--c)) bottom right/4px 28px no-repeat;
+  transition:inset .2s ease}
+.qr-codigo:hover{transform:translateY(-3px);box-shadow:0 24px 50px rgba(0,0,0,.45),0 0 0 4px rgba(209,220,90,.35)}
+.qr-codigo:hover::after{inset:-15px}
+.qr-codigo:active{transform:translateY(1px)}
+.qr-selo{position:absolute;top:-12px;left:50%;transform:translateX(-50%);z-index:1;background:var(--cor2);color:var(--sobre-lima);font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:4px 12px;border-radius:999px;box-shadow:0 3px 0 var(--cor14);white-space:nowrap}
+.qr-alternativa{grid-area:alt;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px 8px;padding-top:14px;border-top:1px solid var(--linha);font-size:13px;color:var(--apagado);text-align:center}
+.qr-url{display:inline-flex;align-items:center;gap:6px;min-height:32px;font-weight:700;color:var(--cor7);overflow-wrap:anywhere;transition:color .2s}
+.qr-url .ic{width:14px;height:14px}
+.qr-url:hover{color:var(--cor2);text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- RODAPÉ ---------- */
 .rodape{background:var(--fundo-fundo);border-top:2px solid var(--cor2);padding:clamp(48px,7vw,80px) 0 28px}
@@ -394,9 +413,7 @@ h3{font-size:clamp(18px,1.6vw,21px);letter-spacing:-.01em}
   .etapa-painel{grid-template-columns:minmax(0,1fr)}
   .etapa-painel .moldura-etapa{order:-1}
   .cta-grade{grid-template-columns:auto minmax(0,1fr)}
-  .qr{grid-column:1 / -1;flex-direction:row;width:auto;max-width:460px;text-align:left}
-  .qr img{width:140px;height:140px}
-  .qr .qr-titulo{justify-content:flex-start}
+  .qr-cartao{grid-column:1 / -1;width:100%;max-width:560px;justify-self:center}
   .proposito-grade{grid-template-columns:minmax(0,1fr)}
   .proposito-grade>div:first-child{position:static}
   .rodape-grade{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -405,7 +422,7 @@ h3{font-size:clamp(18px,1.6vw,21px);letter-spacing:-.01em}
 @media (max-width:760px){
   :root{--topo-altura:64px}
   body{font-size:15.5px}
-  .marca-circulo{width:38px;height:38px}
+  .marca-logo{width:38px;height:38px}
   .marca-nome{font-size:20px}
   .acoes{flex-direction:column;align-items:stretch}
   .acoes .botao{width:100%;white-space:normal;flex-wrap:wrap;row-gap:4px;padding-top:8px;padding-bottom:8px}
@@ -445,8 +462,13 @@ h3{font-size:clamp(18px,1.6vw,21px);letter-spacing:-.01em}
   .cta-grade{grid-template-columns:minmax(0,1fr)}
   .cta-astronauta{width:110px;margin:0 auto -8px}
   .cta-texto{text-align:left}
-  .qr{flex-direction:column;text-align:center;width:100%}
-  .qr .qr-titulo{justify-content:center}
+  .qr-cartao{grid-template-columns:minmax(0,1fr);grid-template-areas:"chamada" "seta" "codigo" "alt";justify-items:center;text-align:center;gap:6px}
+  .qr-chamada{align-items:center}
+  .qr-titulo{justify-content:center}
+  .qr-seta{width:64px;justify-self:center;rotate:78deg;margin:4px 0 10px;animation-name:apontar-baixo}
+  .qr-codigo{width:min(230px,66vw);margin:18px auto 16px}
+  .qr-alternativa{width:100%}
+  .qr-url{font-size:clamp(11.5px,3.4vw,14px);white-space:nowrap;overflow-wrap:normal}
   .rodape-grade{grid-template-columns:minmax(0,1fr)}
 }
 @media (min-width:1600px){
@@ -473,8 +495,6 @@ h3{font-size:clamp(18px,1.6vw,21px);letter-spacing:-.01em}
 .retomar .ic{color:var(--cor2)}
 .retomar span:last-child{margin-left:auto;color:var(--cor7)}
 .fluxo-endpoint{display:inline-block;margin:-12px 0 22px;font-size:13px}
-.cta-grade:has(.qr[hidden]){grid-template-columns:auto minmax(0,1fr)}
-@media (max-width:760px){.cta-grade:has(.qr[hidden]){grid-template-columns:minmax(0,1fr)}}
 
 /* ---------- PARA QUEM É ---------- */
 .numeros{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--linha-forte);border-bottom:1px solid var(--linha-forte);margin-bottom:clamp(48px,7vw,80px)}
@@ -487,7 +507,6 @@ h3{font-size:clamp(18px,1.6vw,21px);letter-spacing:-.01em}
 .link-publico{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:700;color:var(--cor-pilar);width:max-content}
 .link-publico .ic{transition:transform .2s}
 .link-publico:hover .ic{transform:translateX(3px)}
-.link-publico.link-pendente{opacity:.6}
 @media (max-width:760px){
   .numeros{grid-template-columns:repeat(2,minmax(0,1fr))}
   .numeros li{padding:22px 16px 22px 0}
