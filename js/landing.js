@@ -127,35 +127,35 @@
       titulo: 'Escolha o conteúdo',
       texto: 'Selecione a matéria e o tema. Depois, defina quantas questões cada fase terá e a dificuldade inicial da jornada.',
       fatos: ['5, 10, 15 ou 20 questões por fase', 'Fácil, Médio ou Difícil'],
-      img: 'assets/telas/montagem.webp',
+      img: 'assets/telas/montagem.webp?v=20261114',
       alt: 'Painel Monte sua jornada, com matéria, tema, quantidade de questões e dificuldade.'
     },
     {
       titulo: 'Inicie um desafio',
       texto: 'Ao gerar o desafio, as questões de múltipla escolha são criadas por IA para o tema e a dificuldade escolhidos. A fase abre como um mapa, e cada bolinha é uma questão.',
       fatos: ['Questões criadas por IA', 'Progresso salvo automaticamente'],
-      img: 'assets/telas/mapa.webp',
+      img: 'assets/telas/mapa.webp?v=20261114',
       alt: 'Mapa do desafio com a trilha de questões: três acertos, um erro e a próxima questão disponível.'
     },
     {
       titulo: 'Responda às questões',
       texto: 'Cada resposta é corrigida na hora. A alternativa fica verde no acerto e vermelha no erro, e a explicação aparece logo abaixo.',
       fatos: ['Correção imediata', 'Explicação em toda questão'],
-      img: 'assets/telas/acerto.webp',
+      img: 'assets/telas/acerto.webp?v=20261114',
       alt: 'Questão respondida corretamente, com a alternativa Netuno em verde e a explicação.'
     },
     {
       titulo: 'Ganhe pontos e avance',
       texto: 'Acertos valem 10, 15 ou 20 pontos conforme a dificuldade, e errar desconta 25% desse valor. Concluir a fase rende bônus e libera a próxima, um nível mais difícil.',
       fatos: ['+10 por fase concluída', '+25 por fase perfeita', '+50 por jornada completa'],
-      img: 'assets/telas/resultado.webp',
+      img: 'assets/telas/resultado.webp?v=20261114',
       alt: 'Tela de fase concluída: 4 de 5 acertos, 80% de precisão e bônus de 10 XP.'
     },
     {
       titulo: 'Acompanhe sua evolução',
       texto: 'Em Meu progresso ficam as fases concluídas, a precisão das respostas e o histórico de desafios, com a opção de refazer. O ranking mostra a sua posição.',
       fatos: ['Histórico com as 30 atividades recentes', 'Posição no ranking'],
-      img: 'assets/telas/progresso.webp',
+      img: 'assets/telas/progresso.webp?v=20261114',
       alt: 'Tela Meu progresso com desafios concluídos, precisão de 80%, questões respondidas e o histórico.'
     }
   ];
@@ -178,13 +178,13 @@
 
   /* ---------- Galeria de demonstração ---------- */
   const TELAS = [
-    { img: 'assets/telas/mapa.webp', alt: 'Mapa do desafio com a trilha de questões.', legenda: 'Mapa do desafio: cada bolinha é uma questão. Acertos ficam marcados, erros aparecem em vermelho e a próxima questão é liberada em ordem.' },
-    { img: 'assets/telas/questao.webp', alt: 'Questão de múltipla escolha com a alternativa C selecionada.', legenda: 'Questão de múltipla escolha sobre o tema escolhido, com quatro alternativas.' },
-    { img: 'assets/telas/erro.webp', alt: 'Resposta incorreta em vermelho, a correta em verde e a explicação.', legenda: 'Quando o estudante erra, a plataforma mostra a alternativa correta e explica o conteúdo.' },
-    { img: 'assets/telas/resultado.webp', alt: 'Resultado da fase com acertos, pontos e precisão.', legenda: 'Fim da fase: acertos, pontos ganhos, precisão e o caminho para a próxima fase.' },
-    { img: 'assets/telas/ranking.webp', alt: 'Ranking da comunidade com posição, sequência, tempo ativo e pontos.', legenda: 'Ranking da comunidade, ordenado pelos pontos acumulados, com a linha do próprio estudante destacada.' },
-    { img: 'assets/telas/inicio.webp', alt: 'Tela inicial da área do estudante.', legenda: 'Painel do estudante: pontos, sequência, posição no ranking, a montagem do próximo desafio e o mapa de conquistas.' },
-    { img: 'assets/telas/acesso.webp', alt: 'Tela de acesso com o astronauta do ExplAIner e o formulário de login.', legenda: 'Tela de acesso: entrar ou criar conta, com aceite dos Termos de Uso e do Termo de Consentimento.' }
+    { img: 'assets/telas/mapa.webp?v=20261114', alt: 'Mapa do desafio com a trilha de questões.', legenda: 'Mapa do desafio: cada bolinha é uma questão. Acertos ficam marcados, erros aparecem em vermelho e a próxima questão é liberada em ordem.' },
+    { img: 'assets/telas/questao.webp?v=20261114', alt: 'Questão de múltipla escolha com a alternativa C selecionada.', legenda: 'Questão de múltipla escolha sobre o tema escolhido, com quatro alternativas.' },
+    { img: 'assets/telas/erro.webp?v=20261114', alt: 'Resposta incorreta em vermelho, a correta em verde e a explicação.', legenda: 'Quando o estudante erra, a plataforma mostra a alternativa correta e explica o conteúdo.' },
+    { img: 'assets/telas/resultado.webp?v=20261114', alt: 'Resultado da fase com acertos, pontos e precisão.', legenda: 'Fim da fase: acertos, pontos ganhos, precisão e o caminho para a próxima fase.' },
+    { img: 'assets/telas/ranking.webp?v=20261114', alt: 'Ranking da comunidade com posição, sequência, tempo ativo e pontos.', legenda: 'Ranking da comunidade, ordenado pelos pontos acumulados, com a linha do próprio estudante destacada.' },
+    { img: 'assets/telas/inicio.webp?v=20261114', alt: 'Tela inicial da área do estudante.', legenda: 'Painel do estudante: pontos, sequência, posição no ranking, a montagem do próximo desafio e o mapa de conquistas.' },
+    { img: 'assets/telas/acesso.webp?v=20261114', alt: 'Tela de acesso com o astronauta do ExplAIner e o formulário de login.', legenda: 'Tela de acesso: entrar ou criar conta, com aceite dos Termos de Uso e do Termo de Consentimento.' }
   ];
   const palcoImg = $('#palco-imagem');
   const palco = $('#palco');

@@ -345,7 +345,7 @@ h3{font-size:clamp(18px,1.6vw,21px);letter-spacing:-.01em}
 .qr-titulo .ic{color:var(--cor2);width:22px;height:22px}
 .qr-texto{font-size:15px;color:var(--apagado);max-width:34ch}
 .qr-texto strong{color:var(--texto)}
-.qr-seta{grid-area:seta;width:100%;max-width:150px;justify-self:end;overflow:visible;animation:apontar 1.8s ease-in-out infinite}
+.qr-seta{grid-area:seta;width:100%;height:auto;max-width:150px;justify-self:end;overflow:visible;animation:apontar 1.8s ease-in-out infinite}
 .qr-seta path{fill:none;stroke:var(--cor2);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
 .qr-seta-linha{stroke-dasharray:1 11}
 @keyframes apontar{50%{translate:7px 2px}}
